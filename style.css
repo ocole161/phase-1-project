@@ -1,0 +1,15 @@
+#results-div{
+    width: 300px;
+  border: 15px solid #EC9D00;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin: 10px;
+}
+
+p {
+    white-space: pre;
+}
+
+.hidden{
+    display:none;
+}
