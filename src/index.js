@@ -6,13 +6,7 @@ const resultsDiv = document.querySelector(`#results-div`)
 const randomDiv = document.querySelector(`#random-div`)
 
 
-
-
-const getRandom = (arr) => {
-    return arr[Math.floor(Math.random() * arr.length)];
-  };
-
-document.querySelector('#search-btn').addEventListener('click', (e)=> {
+function renderResults(){
     resultsDiv.innerHTML = ""
     fetch(`http://localhost:3000/breweries`)
     .then(result => result.json())
@@ -55,7 +49,22 @@ document.querySelector('#search-btn').addEventListener('click', (e)=> {
         }
     })
     })
+}
 
+
+
+
+
+const getRandom = (arr) => {
+    return arr[Math.floor(Math.random() * arr.length)];
+  };
+
+document.querySelector('#search-btn').addEventListener('click', renderResults);
+
+document.addEventListener('keydown', (e)=>{
+if(e.key === 'Enter'){
+renderResults()
+}
 });
 
 
@@ -82,3 +91,4 @@ document.addEventListener(`DOMContentLoaded`, (e)=>{
         randomDiv.append(h3)
     })
 })
+
