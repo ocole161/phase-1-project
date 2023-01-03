@@ -19,6 +19,7 @@ function renderResults(){
             if((stateSelect.value === item.state || stateSelect.value === `Select State`) && (typeSelect.value.toLowerCase() === item.brewery_type || typeSelect.value === `Select Type`) && (item.name.toLowerCase().includes(nameSearch.value.toLowerCase()) || nameSearch.value === ``)){
                 const p = document.createElement('p')
                 p.textContent = item.name
+
                 const h5 = document.createElement('h5')
                 h5.textContent = 
 `    Location: ${item.city}, ${item.state}
