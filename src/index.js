@@ -40,11 +40,11 @@ function renderResults(){
                     editBtn.className = 'editBtn'
                 }
 
-    if(item.website_url !== ``){
-    p.className = `hasUrl`
-    h5.append(webLink)
-    editBtn.className = 'editBtn'
-    }
+                if(item.website_url !== ``){
+                p.className = `hasUrl`
+                h5.append(webLink)
+                editBtn.className = 'editBtn'
+                }
                 h5.append(editBtn)
 
                 // Create edit form
@@ -52,6 +52,7 @@ function renderResults(){
                     var br = document.createElement("br")
                     h5.innerHTML = ''
                     h5.className = ``
+                    h5.style.height = "3000px"
                     const nameEdit = document.createElement('input')
                     const cityEdit = document.createElement('input')
                     const stateEdit = document.createElement('input')
@@ -86,37 +87,9 @@ function renderResults(){
                     h5.appendChild(br.cloneNode())
                     h5.append(submitEdit)
                     h5.append(deleteBtn)
-                    nameEdit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    cityEdit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    stateEdit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    streetEdit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    ad2Edit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    ad3Edit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    urlEdit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    submitEdit.addEventListener('click', (e) =>{editBrewery})
-                        
-                    function editBrewery(item){
+
+                    // function that will update db.json
+                    function editBrewery() {
                         fetch(`http://localhost:3000/breweries/${item.id}`, {
                             method: 'PATCH',
                             headers:{
@@ -135,8 +108,39 @@ function renderResults(){
                         })
                         .then(p.textContent = nameEdit.value)
                     }
-                    )
 
+                    // Event listeners for every input if enter is pressed
+                    nameEdit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    cityEdit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    stateEdit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    streetEdit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    ad2Edit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    ad3Edit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    urlEdit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    submitEdit.addEventListener('click', (e) => {
+                        editBrewery()
+                    })
                     deleteBtn.addEventListener('click', () =>
                         fetch(`http://localhost:3000/breweries/${item.id}`, {
                             method: 'DELETE'
