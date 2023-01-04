@@ -51,15 +51,20 @@ p {
 }
 
 h4{
-    margin-left:500px;
+    margin-left:50%;
     font-size:25px;
 }
 
 #random-div{
+    margin-left:50%;
     align-items: center;
 }
 
 .hidden {
     display: none;
     height: 0px;
+}
+
+.editBtn {
+    margin-left: 10px;
 }

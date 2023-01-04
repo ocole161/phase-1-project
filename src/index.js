@@ -1,4 +1,5 @@
 //Javascript code file
+// Owen's branch
 const stateSelect = document.querySelector('#state-slct')
 const typeSelect = document.querySelector('#search-by-type')
 const nameSearch = document.querySelector(`#search-bar`)
@@ -12,53 +13,57 @@ function renderResults(){
     .then(result => result.json())
     .then(data => {
         data.forEach(item => {
-            
             const addressCheck = (item.street !== ``) ? `Address: ${item.street} ${item.address_2} ${item.address_3}` : `Address Unknown`
-
-
             if((stateSelect.value === item.state || stateSelect.value === `Select State`) && (typeSelect.value.toLowerCase() === item.brewery_type || typeSelect.value === `Select Type`) && (item.name.toLowerCase().includes(nameSearch.value.toLowerCase()) || nameSearch.value === ``)){
                 const p = document.createElement('p')
                 p.textContent = item.name
-
                 const h5 = document.createElement('h5')
                 h5.textContent = 
 `    Location: ${item.city}, ${item.state}
     Brewery Type: ${item.brewery_type.charAt(0).toUpperCase() + item.brewery_type.slice(1)}
     ${addressCheck}
     `
-
     const webLink = document.createElement('a')
     webLink.href = `${item.website_url}`
     webLink.target = '_blank'
-    webLink.textContent = `Website`
+    webLink.textContent = `Website\n`
     
+    const editBtn = document.createElement('button')
+    editBtn.textContent = 'Edit'
+    
+
     if(item.website_url !== ``){
     h5.append(webLink)
+    editBtn.className = 'editBtn'
     }
 
+    h5.append(editBtn)
+
+    editBtn.addEventListener('click', renderForm)
+
         h5.className = `hidden`
-        p.append(h5)
-                
+        p.append(h5)       
         p.addEventListener('mouseover', () =>{
         h5.className = ``})
         p.addEventListener('mouseout', () =>{
         h5.className = `hidden`
         })
-
-
         resultsDiv.append(p)
         }
     })
     })
 }
 
-
+// function renderForm () {
+// h5.innerHTML = ''
+// console.log('working')
+// }
 
 
 
 const getRandom = (arr) => {
     return arr[Math.floor(Math.random() * arr.length)];
-  };
+};
 
 document.querySelector('#search-btn').addEventListener('click', renderResults);
 
