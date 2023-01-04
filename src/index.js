@@ -6,6 +6,7 @@ const nameSearch = document.querySelector(`#search-bar`)
 const resultsDiv = document.querySelector(`#results-div`)
 const randomDiv = document.querySelector(`#random-div`)
 
+
 // Build list of results
 function renderResults(){
     resultsDiv.innerHTML = ""
@@ -42,9 +43,14 @@ function renderResults(){
 
                 // Create edit form
                 function renderForm () {
+                    var br = document.createElement("br")
                     h5.innerHTML = ''
+                    h5.className = ``
+                    h5.style.paddingBottom = "2000px"
                     const nameEdit = document.createElement('input')
+                    const cityEdit = document.createElement('input')
                     const stateEdit = document.createElement('input')
+                    const typeEdit = document.createElement('input')
                     const streetEdit = document.createElement('input')
                     const ad2Edit = document.createElement('input')
                     const ad3Edit = document.createElement('input')
@@ -52,6 +58,8 @@ function renderResults(){
                     const submitEdit = document.createElement('button')
                     const deleteBtn = document.createElement('button')
                     nameEdit.value = item.name
+                    cityEdit.value = item.city
+                    typeEdit.value = item.brewery_type
                     stateEdit.value = item.state
                     streetEdit.value = item.street
                     ad2Edit.value = item.address_2
@@ -59,30 +67,56 @@ function renderResults(){
                     urlEdit.value = item.website_url
                     submitEdit.textContent = 'Submit'
                     deleteBtn.textContent = 'Delete'
+                    h5.append("Name: ")
                     h5.append(nameEdit)
-                    h5.append(stateEdit)
+                    h5.appendChild(br.cloneNode())
+                    h5.append("City: ")
+                    h5.append(cityEdit)
+                    h5.appendChild(br.cloneNode())
+                    h5.append("State: ")
+                    h5.append(stateEdit) 
+                    h5.appendChild(br.cloneNode())
+                    h5.append("Type: ")
+                    h5.append(typeEdit)
+                    h5.appendChild(br.cloneNode())
+                    h5.append("Address: ")
                     h5.append(streetEdit)
                     h5.append(ad2Edit)
                     h5.append(ad3Edit)
+                    h5.appendChild(br.cloneNode())
+                    h5.append("Website: ")
                     h5.append(urlEdit)
+                    h5.appendChild(br.cloneNode())
                     h5.append(submitEdit)
-                    // submitEdit.addEventListener('click', () =>
-                    //     fetch(`http://localhost:3000/breweries/${breweries.}`, {
-                    //         method: 'PATCH',
-                    //         headers:{
-                    //             'Content-Type': 'application/json'
-                    //         },
-                    //         body: JSON.stringify(item)
-                    //     })
-                    //     .then(res => res.json())
+                    h5.append(deleteBtn)
+                    submitEdit.addEventListener('click', (e) =>
+                        fetch(`http://localhost:3000/breweries/${item.id}`, {
+                            method: 'PATCH',
+                            headers:{
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                name: nameEdit.value,
+                                city: cityEdit.value,
+                                type: typeEdit.value,
+                                state: stateEdit.value,
+                                street: streetEdit.value,
+                                address_2: ad2Edit.value,
+                                address_3: ad3Edit.value,
+                                website_url: urlEdit.value,
+                            })
+                        })
+                        .then(p.textContent = nameEdit.value)
                         
-                    // )
+                    )
 
-                    // deleteBtn.addEventListener('click', () =>
-                    //     fetch(`http://localhost:3000/breweries`)
-                    
-                    // )
-                    // }
+                    deleteBtn.addEventListener('click', () =>
+                        fetch(`http://localhost:3000/breweries/${item.id}`, {
+                            method: 'DELETE'
+                        })
+                        .then(p.remove())
+                    )
+                }
 
                 editBtn.addEventListener('click', renderForm)
 
