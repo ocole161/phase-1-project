@@ -8,6 +8,23 @@
     overflow: auto;
 }
 
+h1 {
+    text-align: center;
+    font-size: 45px;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.search{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
 #results-div > p {
     float: left;
     width: 50%;
@@ -31,6 +48,15 @@ h5 {
 p {
     padding-bottom: 2px;
     white-space: pre;
+}
+
+h4{
+    margin-left:500px;
+    font-size:25px;
+}
+
+#random-div{
+    align-items: center;
 }
 
 .hidden {
