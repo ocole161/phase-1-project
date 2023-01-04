@@ -66,23 +66,23 @@ function renderResults(){
                     h5.append(ad3Edit)
                     h5.append(urlEdit)
                     h5.append(submitEdit)
-                    submitEdit.addEventListener('click', () =>
-                        fetch(`http://localhost:3000/breweries/${breweries.}`, {
-                            method: 'PATCH',
-                            headers:{
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(item)
-                        })
-                        .then(res => res.json())
+                    // submitEdit.addEventListener('click', () =>
+                    //     fetch(`http://localhost:3000/breweries/${breweries.}`, {
+                    //         method: 'PATCH',
+                    //         headers:{
+                    //             'Content-Type': 'application/json'
+                    //         },
+                    //         body: JSON.stringify(item)
+                    //     })
+                    //     .then(res => res.json())
                         
-                    )
+                    // )
 
-                    deleteBtn.addEventListener('click', () =>
-                        fetch(`http://localhost:3000/breweries`)
+                    // deleteBtn.addEventListener('click', () =>
+                    //     fetch(`http://localhost:3000/breweries`)
                     
-                    )
-                    }
+                    // )
+                    // }
 
                 editBtn.addEventListener('click', renderForm)
 
