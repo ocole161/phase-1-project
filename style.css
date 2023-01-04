@@ -26,15 +26,22 @@ section {
 }
 
 #results-div > p {
+    display: unset;
     float: left;
     width: 50%;
     padding-bottom: 2px;
     border-bottom: 0px;
     height: 0px;
+    padding-left: 0px;
 }
 
-#results-div > p:hover {
-    height:55px;
+
+#results-div > .noUrl:hover{
+    height: 70px;
+}
+
+#results-div > .hasUrl:hover{
+    height:95px;
 }
 
 
@@ -46,7 +53,6 @@ h5 {
 
 
 p {
-    padding-bottom: 2px;
     white-space: pre;
 }
 
@@ -67,4 +73,5 @@ h4{
 
 .editBtn {
     margin-left: 10px;
+    padding-bottom: 200 px;
 }
