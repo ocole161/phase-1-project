@@ -46,7 +46,6 @@ function renderResults(){
                     var br = document.createElement("br")
                     h5.innerHTML = ''
                     h5.className = ``
-                    h5.style.paddingBottom = "2000px"
                     const nameEdit = document.createElement('input')
                     const cityEdit = document.createElement('input')
                     const stateEdit = document.createElement('input')
@@ -67,29 +66,51 @@ function renderResults(){
                     urlEdit.value = item.website_url
                     submitEdit.textContent = 'Submit'
                     deleteBtn.textContent = 'Delete'
-                    h5.append("Name: ")
-                    h5.append(nameEdit)
+                    h5.append("Name: ", nameEdit)
                     h5.appendChild(br.cloneNode())
-                    h5.append("City: ")
-                    h5.append(cityEdit)
+                    h5.append("City: ", cityEdit)
                     h5.appendChild(br.cloneNode())
-                    h5.append("State: ")
-                    h5.append(stateEdit) 
+                    h5.append("State: ", stateEdit)
                     h5.appendChild(br.cloneNode())
-                    h5.append("Type: ")
-                    h5.append(typeEdit)
+                    h5.append("Type: ", typeEdit)
                     h5.appendChild(br.cloneNode())
-                    h5.append("Address: ")
-                    h5.append(streetEdit)
-                    h5.append(ad2Edit)
-                    h5.append(ad3Edit)
+                    h5.append("Address: ",streetEdit,ad2Edit,ad3Edit)
                     h5.appendChild(br.cloneNode())
-                    h5.append("Website: ")
-                    h5.append(urlEdit)
+                    h5.append("Website: ", urlEdit)
                     h5.appendChild(br.cloneNode())
                     h5.append(submitEdit)
                     h5.append(deleteBtn)
-                    submitEdit.addEventListener('click', (e) =>
+                    nameEdit.addEventListener('keydown', (e)=>{
+                        if(e.key === 'Enter'){
+                            // add function here
+                        }})
+                    cityEdit.addEventListener('keydown', (e)=>{
+                        if(e.key === 'Enter'){
+                            // add function here
+                        }})
+                    stateEdit.addEventListener('keydown', (e)=>{
+                        if(e.key === 'Enter'){
+                            // add function here
+                        }})
+                    streetEdit.addEventListener('keydown', (e)=>{
+                        if(e.key === 'Enter'){
+                            // add function here
+                        }})
+                    ad2Edit.addEventListener('keydown', (e)=>{
+                        if(e.key === 'Enter'){
+                            // add function here
+                        }})
+                    ad3Edit.addEventListener('keydown', (e)=>{
+                        if(e.key === 'Enter'){
+                            // add function here
+                        }})
+                    urlEdit.addEventListener('keydown', (e)=>{
+                        if(e.key === 'Enter'){
+                            // add function here
+                        }})
+                    submitEdit.addEventListener('click', (e) =>{editBrewery})
+                        
+                    function editBrewery(item){
                         fetch(`http://localhost:3000/breweries/${item.id}`, {
                             method: 'PATCH',
                             headers:{
@@ -107,7 +128,7 @@ function renderResults(){
                             })
                         })
                         .then(p.textContent = nameEdit.value)
-                        
+                    }
                     )
 
                     deleteBtn.addEventListener('click', () =>
@@ -138,7 +159,7 @@ function renderResults(){
 document.querySelector('#search-btn').addEventListener('click', renderResults);
 
 // Initiate search when Enter key is pressed
-document.addEventListener('keydown', (e)=>{
+nameSearch.addEventListener('keydown', (e)=>{
 if(e.key === 'Enter'){
 renderResults()
 }
