@@ -54,9 +54,10 @@ function renderResults(){
     })
 }
 
-function renderForm () {
-
-}
+// function renderForm () {
+// h5.innerHTML = ''
+// console.log('working')
+// }
 
 
 
