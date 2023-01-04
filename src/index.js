@@ -17,6 +17,7 @@ function renderResults(){
             if((stateSelect.value === item.state || stateSelect.value === `Select State`) && (typeSelect.value.toLowerCase() === item.brewery_type || typeSelect.value === `Select Type`) && (item.name.toLowerCase().includes(nameSearch.value.toLowerCase()) || nameSearch.value === ``)){
                 const p = document.createElement('p')
                 p.textContent = item.name
+                p.className = `noUrl`
                 const h5 = document.createElement('h5')
                 h5.textContent = 
 `    Location: ${item.city}, ${item.state}
@@ -33,6 +34,7 @@ function renderResults(){
     
 
     if(item.website_url !== ``){
+    p.className = `hasUrl`
     h5.append(webLink)
     editBtn.className = 'editBtn'
     }
@@ -54,10 +56,10 @@ function renderResults(){
     })
 }
 
-// function renderForm () {
-// h5.innerHTML = ''
-// console.log('working')
-// }
+function renderForm () {
+h5.innerHTML = ''
+console.log('working')
+}
 
 
 
