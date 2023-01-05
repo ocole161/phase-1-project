@@ -13,8 +13,9 @@ function renderResults(){
     fetch(`http://localhost:3000/breweries`)
     .then(result => result.json())
     .then(data => {
-        console.log(`console log ${data}`)
+        // console.log(`console log ${data}`)
         data.forEach(item => {
+            console.log(item)
             const addressCheck = (item.street !== ``) ? `Address: ${item.street} ${item.address_2} ${item.address_3}` : `Address Unknown`
             if((stateSelect.value === item.state || stateSelect.value === `Select State`) && (typeSelect.value.toLowerCase() === item.brewery_type || typeSelect.value === `Select Type`) && (item.name.toLowerCase().includes(nameSearch.value.toLowerCase()) || nameSearch.value === ``)){
                 const p = document.createElement('p')
@@ -152,6 +153,17 @@ function renderResults(){
                 }
                 // opens form when Edit button is clicked
                 editBtn.addEventListener('click', renderForm)
+
+                // append h5 as hidden to p and append p to resultsDiv
+                h5.className = `hidden`
+                p.append(h5)       
+                p.addEventListener('mouseover', () =>{
+                h5.className = ``
+                })
+                p.addEventListener('mouseout', () =>{
+                h5.className = `hidden`
+                })
+                resultsDiv.append(p)
             }
         })
     })
