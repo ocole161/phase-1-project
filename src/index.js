@@ -86,56 +86,56 @@ function renderResults(){
                     h5.appendChild(br.cloneNode())
                     h5.append(submitEdit)
                     h5.append(deleteBtn)
-                    nameEdit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    cityEdit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    stateEdit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    streetEdit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    ad2Edit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    ad3Edit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    urlEdit.addEventListener('keydown', (e)=>{
-                        if(e.key === 'Enter'){
-                            // add function here
-                        }})
-                    submitEdit.addEventListener('click', (e) =>{editBrewery})
+                    // nameEdit.addEventListener('keydown', (e)=>{
+                    //     if(e.key === 'Enter'){
+                    //         // add function here
+                    //     }})
+                    // cityEdit.addEventListener('keydown', (e)=>{
+                    //     if(e.key === 'Enter'){
+                    //         // add function here
+                    //     }})
+                    // stateEdit.addEventListener('keydown', (e)=>{
+                    //     if(e.key === 'Enter'){
+                    //         // add function here
+                    //     }})
+                    // streetEdit.addEventListener('keydown', (e)=>{
+                    //     if(e.key === 'Enter'){
+                    //         // add function here
+                    //     }})
+                    // ad2Edit.addEventListener('keydown', (e)=>{
+                    //     if(e.key === 'Enter'){
+                    //         // add function here
+                    //     }})
+                    // ad3Edit.addEventListener('keydown', (e)=>{
+                    //     if(e.key === 'Enter'){
+                    //         // add function here
+                    //     }})
+                    // urlEdit.addEventListener('keydown', (e)=>{
+                    //     if(e.key === 'Enter'){
+                    //         // add function here
+                    //     }})
+                    // submitEdit.addEventListener('click', (e) =>{editBrewery})
                         
-                    function editBrewery(item){
-                        fetch(`http://localhost:3000/breweries/${item.id}`, {
-                            method: 'PATCH',
-                            headers:{
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                name: nameEdit.value,
-                                city: cityEdit.value,
-                                type: typeEdit.value,
-                                state: stateEdit.value,
-                                street: streetEdit.value,
-                                address_2: ad2Edit.value,
-                                address_3: ad3Edit.value,
-                                website_url: urlEdit.value,
-                            })
-                        })
-                        .then(p.textContent = nameEdit.value)
-                    }
-                    )
+                    // function editBrewery(item){
+                    //     fetch(`http://localhost:3000/breweries/${item.id}`, {
+                    //         method: 'PATCH',
+                    //         headers:{
+                    //             'Content-Type': 'application/json'
+                    //         },
+                    //         body: JSON.stringify({
+                    //             name: nameEdit.value,
+                    //             city: cityEdit.value,
+                    //             type: typeEdit.value,
+                    //             state: stateEdit.value,
+                    //             street: streetEdit.value,
+                    //             address_2: ad2Edit.value,
+                    //             address_3: ad3Edit.value,
+                    //             website_url: urlEdit.value,
+                    //         })
+                    //     })
+                    //     .then(p.textContent = nameEdit.value)
+                    // }
+                    // )
 
                     deleteBtn.addEventListener('click', () =>
                         fetch(`http://localhost:3000/breweries/${item.id}`, {
