@@ -29,8 +29,11 @@ section {
 
 #results-div > p {
     display: block;
-    padding-bottom: 2px;
+    margin: 0px;
+    padding-bottom: 25px;
+    padding-top: 15px;
     border-bottom: 0px;
+    border-top: 0px;
     height: 0px;
     padding-left: 0px;
     font-size: 25px;
@@ -43,19 +46,25 @@ section {
 
 
 #results-div > .noUrl:hover{
-    height: 265px;
+    height: 105px;
 }
 
 #results-div > .hasUrl:hover{
-    height:295px;
+    height:130px;
+}
+
+#currentForm.noUrl:hover{
+    height: 185px !important;
+}
+#currentForm.hasUrl:hover{
+    height: 185px !important;
 }
 
 
 h5 {
     padding-top: 0px;
     border-left: 0px;
-    margin: 2px;
-    padding-bottom: 0px;
+    margin: 0px;
     color: #0e1111;
 }
 
@@ -91,9 +100,5 @@ h3{
 
 .editBtn {
     margin-left: 10px;
-    padding-bottom: 200 px;
 }
 
-.editForm {
-    margin-bottom: 10px
-}

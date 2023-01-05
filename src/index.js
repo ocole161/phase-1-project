@@ -53,6 +53,7 @@ function renderResults(){
                 function renderForm () {
                     var br = document.createElement("br")
                     h5.innerHTML = ''
+                    p.id = 'currentForm'
                     h5.className = 'editForm'
                     const nameEdit = document.createElement('input')
                     const cityEdit = document.createElement('input')
@@ -162,7 +163,7 @@ function renderResults(){
                 })
                 p.addEventListener('mouseout', () =>{
                 h5.className = `hidden`
-                })
+            })
                 resultsDiv.append(p)
             }
         })
