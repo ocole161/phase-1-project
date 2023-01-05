@@ -141,6 +141,8 @@ function renderResults(){
                     submitEdit.addEventListener('click', (e) => {
                         editBrewery()
                     })
+                    
+                    // Delete button deletes data from json
                     deleteBtn.addEventListener('click', () =>
                         fetch(`http://localhost:3000/breweries/${item.id}`, {
                             method: 'DELETE'
