@@ -13,7 +13,9 @@ function renderResults(){
     fetch(`http://localhost:3000/breweries`)
     .then(result => result.json())
     .then(data => {
+        // console.log(`console log ${data}`)
         data.forEach(item => {
+            console.log(item)
             const addressCheck = (item.street !== ``) ? `Address: ${item.street} ${item.address_2} ${item.address_3}` : `Address Unknown`
             if((stateSelect.value === item.state || stateSelect.value === `Select State`) && (typeSelect.value.toLowerCase() === item.brewery_type || typeSelect.value === `Select Type`) && (item.name.toLowerCase().includes(nameSearch.value.toLowerCase()) || nameSearch.value === ``)){
                 const p = document.createElement('p')
@@ -40,18 +42,18 @@ function renderResults(){
                     editBtn.className = 'editBtn'
                 }
 
-    if(item.website_url !== ``){
-    p.className = `hasUrl`
-    h5.append(webLink)
-    editBtn.className = 'editBtn'
-    }
+                if(item.website_url !== ``){
+                p.className = `hasUrl`
+                h5.append(webLink)
+                editBtn.className = 'editBtn'
+                }
                 h5.append(editBtn)
 
                 // Create edit form
                 function renderForm () {
                     var br = document.createElement("br")
                     h5.innerHTML = ''
-                    h5.className = ``
+                    h5.className = 'editForm'
                     const nameEdit = document.createElement('input')
                     const cityEdit = document.createElement('input')
                     const stateEdit = document.createElement('input')
@@ -80,63 +82,68 @@ function renderResults(){
                     h5.appendChild(br.cloneNode())
                     h5.append("Type: ", typeEdit)
                     h5.appendChild(br.cloneNode())
-                    h5.append("Address: ",streetEdit,ad2Edit,ad3Edit)
+                    h5.append("Address: ", streetEdit, ad2Edit, ad3Edit)
                     h5.appendChild(br.cloneNode())
                     h5.append("Website: ", urlEdit)
                     h5.appendChild(br.cloneNode())
                     h5.append(submitEdit)
                     h5.append(deleteBtn)
-                    // nameEdit.addEventListener('keydown', (e)=>{
-                    //     if(e.key === 'Enter'){
-                    //         // add function here
-                    //     }})
-                    // cityEdit.addEventListener('keydown', (e)=>{
-                    //     if(e.key === 'Enter'){
-                    //         // add function here
-                    //     }})
-                    // stateEdit.addEventListener('keydown', (e)=>{
-                    //     if(e.key === 'Enter'){
-                    //         // add function here
-                    //     }})
-                    // streetEdit.addEventListener('keydown', (e)=>{
-                    //     if(e.key === 'Enter'){
-                    //         // add function here
-                    //     }})
-                    // ad2Edit.addEventListener('keydown', (e)=>{
-                    //     if(e.key === 'Enter'){
-                    //         // add function here
-                    //     }})
-                    // ad3Edit.addEventListener('keydown', (e)=>{
-                    //     if(e.key === 'Enter'){
-                    //         // add function here
-                    //     }})
-                    // urlEdit.addEventListener('keydown', (e)=>{
-                    //     if(e.key === 'Enter'){
-                    //         // add function here
-                    //     }})
-                    // submitEdit.addEventListener('click', (e) =>{editBrewery})
-                        
-                    // function editBrewery(item){
-                    //     fetch(`http://localhost:3000/breweries/${item.id}`, {
-                    //         method: 'PATCH',
-                    //         headers:{
-                    //             'Content-Type': 'application/json'
-                    //         },
-                    //         body: JSON.stringify({
-                    //             name: nameEdit.value,
-                    //             city: cityEdit.value,
-                    //             type: typeEdit.value,
-                    //             state: stateEdit.value,
-                    //             street: streetEdit.value,
-                    //             address_2: ad2Edit.value,
-                    //             address_3: ad3Edit.value,
-                    //             website_url: urlEdit.value,
-                    //         })
-                    //     })
-                    //     .then(p.textContent = nameEdit.value)
-                    // }
-                    // )
 
+                    // function that will update db.json
+                    function editBrewery() {
+                        fetch(`http://localhost:3000/breweries/${item.id}`, {
+                            method: 'PATCH',
+                            headers:{
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                name: nameEdit.value,
+                                city: cityEdit.value,
+                                type: typeEdit.value,
+                                state: stateEdit.value,
+                                street: streetEdit.value,
+                                address_2: ad2Edit.value,
+                                address_3: ad3Edit.value,
+                                website_url: urlEdit.value,
+                            })
+                        })
+                        .then(p.textContent = nameEdit.value)
+                    }
+
+                    // Event listeners for every input if enter is pressed
+                    nameEdit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    cityEdit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    stateEdit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    streetEdit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    ad2Edit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    ad3Edit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    urlEdit.addEventListener('keydown', (e) => {
+                        if(e.key === 'Enter'){
+                            editBrewery()
+                        }})
+                    submitEdit.addEventListener('click', (e) => {
+                        editBrewery()
+                    })
+
+                    // Delete button deletes data from json
                     deleteBtn.addEventListener('click', () =>
                         fetch(`http://localhost:3000/breweries/${item.id}`, {
                             method: 'DELETE'
@@ -144,9 +151,10 @@ function renderResults(){
                         .then(p.remove())
                     )
                 }
-
+                // opens form when Edit button is clicked
                 editBtn.addEventListener('click', renderForm)
 
+                // append h5 as hidden to p and append p to resultsDiv
                 h5.className = `hidden`
                 p.append(h5)       
                 p.addEventListener('mouseover', () =>{
@@ -164,7 +172,7 @@ function renderResults(){
 // Initiate search when search button is clicked
 document.querySelector('#search-btn').addEventListener('click', renderResults);
 
-// Initiate search when Enter key is pressed
+// Initiate search when Enter key is pressed while in nameSearch
 nameSearch.addEventListener('keydown', (e)=>{
 if(e.key === 'Enter'){
 renderResults()
