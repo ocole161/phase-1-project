@@ -13,6 +13,7 @@ function renderResults(){
     fetch(`http://localhost:3000/breweries`)
     .then(result => result.json())
     .then(data => {
+        console.log(`console log ${data}`)
         data.forEach(item => {
             const addressCheck = (item.street !== ``) ? `Address: ${item.street} ${item.address_2} ${item.address_3}` : `Address Unknown`
             if((stateSelect.value === item.state || stateSelect.value === `Select State`) && (typeSelect.value.toLowerCase() === item.brewery_type || typeSelect.value === `Select Type`) && (item.name.toLowerCase().includes(nameSearch.value.toLowerCase()) || nameSearch.value === ``)){
