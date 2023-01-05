@@ -51,8 +51,7 @@ function renderResults(){
                 function renderForm () {
                     var br = document.createElement("br")
                     h5.innerHTML = ''
-                    h5.className = ``
-                    h5.style.height = "3000px"
+                    h5.className = 'editForm'
                     const nameEdit = document.createElement('input')
                     const cityEdit = document.createElement('input')
                     const stateEdit = document.createElement('input')
@@ -81,7 +80,7 @@ function renderResults(){
                     h5.appendChild(br.cloneNode())
                     h5.append("Type: ", typeEdit)
                     h5.appendChild(br.cloneNode())
-                    h5.append("Address: ",streetEdit,ad2Edit,ad3Edit)
+                    h5.append("Address: ", streetEdit, ad2Edit, ad3Edit)
                     h5.appendChild(br.cloneNode())
                     h5.append("Website: ", urlEdit)
                     h5.appendChild(br.cloneNode())
@@ -141,7 +140,7 @@ function renderResults(){
                     submitEdit.addEventListener('click', (e) => {
                         editBrewery()
                     })
-                    
+
                     // Delete button deletes data from json
                     deleteBtn.addEventListener('click', () =>
                         fetch(`http://localhost:3000/breweries/${item.id}`, {
@@ -150,18 +149,8 @@ function renderResults(){
                         .then(p.remove())
                     )
                 }
-
+                // opens form when Edit button is clicked
                 editBtn.addEventListener('click', renderForm)
-
-                h5.className = `hidden`
-                p.append(h5)       
-                p.addEventListener('mouseover', () =>{
-                h5.className = ``
-                })
-                p.addEventListener('mouseout', () =>{
-                h5.className = `hidden`
-                })
-                resultsDiv.append(p)
             }
         })
     })
@@ -170,7 +159,7 @@ function renderResults(){
 // Initiate search when search button is clicked
 document.querySelector('#search-btn').addEventListener('click', renderResults);
 
-// Initiate search when Enter key is pressed
+// Initiate search when Enter key is pressed while in nameSearch
 nameSearch.addEventListener('keydown', (e)=>{
 if(e.key === 'Enter'){
 renderResults()
