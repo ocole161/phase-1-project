@@ -33,15 +33,21 @@ section {
     border-bottom: 0px;
     height: 0px;
     padding-left: 0px;
+    font-size: 25px;
+    color:  #0e1111;
+}
+
+#results-div > p:hover{
+    color: blueviolet;
 }
 
 
 #results-div > .noUrl:hover{
-    height: 70px;
+    height: 265px;
 }
 
 #results-div > .hasUrl:hover{
-    height:95px;
+    height:295px;
 }
 
 
@@ -50,6 +56,7 @@ h5 {
     border-left: 0px;
     margin: 2px;
     padding-bottom: 0px;
+    color: #0e1111;
 }
 
 
@@ -58,13 +65,23 @@ p {
 }
 
 h4{
-    margin-left:50%;
+    margin-left:38%;
     font-size:25px;
+    font-family:  'Trebuchet MS', sans-serif;
+}
+
+h3{
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 #random-div{
-    margin-left:50%;
+    font-family:  'Trebuchet MS', sans-serif;
+    margin-left: 36%;
+    margin-right: 33%;
     align-items: center;
+    border: 7px solid #EC9D00;
+    border-radius: 25px;
 }
 
 .hidden {
